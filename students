@@ -1,0 +1,45 @@
+struct Student {
+    var name: String
+    var age: Int
+}
+
+
+class StudentSorter {
+    // Метод для сортировки учеников по имени
+    static func sortByName(_ students: inout [Student]) {
+        students.sort { $0.name < $1.name }
+    }
+    
+    // Метод для сортировки учеников по возрасту
+    static func sortByAge(_ students: inout [Student]) {
+        students.sort { $0.age < $1.age }
+    }
+}
+
+// Пример использования
+var students: [Student] = [
+    Student(name: "Аня", age: 10),
+    Student(name: "Катя", age: 8),
+    Student(name: "Миша", age: 16)
+]
+
+print("Исходный массив учеников:")
+for student in students {
+    print("\(student.name) - \(student.age) лет")
+}
+
+StudentSorter.sortByName(&students)
+print("\nМассив, отсортированный по имени: ")
+for student in students {
+    print("\(student.name) - \(student.age) лет")
+}
+
+StudentSorter.sortByAge(&students)
+print("\nМассив, отсортированный по возрасту: ")
+for student in students {
+    print("\(student.name) - \(student.age) лет")
+}
+
+//отличия массивов и структур
+//Классы могут наследовать свойства и методы других классов, а также добавлять собственные. Структуры не могут наследовать.
+//Структуры имеют автоматически созданный идентичный членом инициализатор (memberwise initializer) для создания новых экземпляров на основе существующих, чего нет у классов.
