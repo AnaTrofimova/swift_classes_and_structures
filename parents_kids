@@ -1,0 +1,51 @@
+// Класс родитель
+class Vehicle {
+    var brand: String
+    var model: String
+    var year: Int
+    
+    init(brand: String, model: String, year: Int) {
+        self.brand = brand
+        self.model = model
+        self.year = year
+    }
+    
+    func drive() {
+        print("Поехали!")
+    }
+}
+
+// Класс-наследник 1
+class Car: Vehicle {
+    var numWheels: Int
+    
+    init(brand: String, model: String, year: Int, numWheels: Int) {
+        self.numWheels = numWheels
+        super.init(brand: brand, model: model, year: year)
+    }
+    
+    override func drive() {
+        print("Автомобиль \(brand) \(model) \(year)")
+    }
+}
+
+// Класс-наследник 2
+class Bicycle: Vehicle {
+    var type: String
+    
+    init(brand: String, model: String, year: Int, type: String) {
+        self.type = type
+        super.init(brand: brand, model: model, year: year)
+    }
+    
+    override func drive() {
+        print("Велосипед \(brand) \(model) \(year)")
+    }
+}
+
+let myCar = Car(brand: "Toyota", model: "Supra", year: 2020, numWheels: 4)
+let myBicycle = Bicycle(brand: "Stells", model: "500", year: 2018, type: "Road")
+
+myCar.drive()
+myBicycle.drive()
+
