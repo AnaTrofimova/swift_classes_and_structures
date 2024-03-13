@@ -1,0 +1,44 @@
+import Foundation
+struct PlayingCard {
+    let suit: String
+    let rank: String
+}
+
+let randomGenerator = RandomNumberGenerator()
+var pokerHands: [String] = []
+
+var cards: [PlayingCard] = []
+for _ in 1...5 {
+    let suit = ["Бубны", "Черви", "Крести", "Пики"].randomElement()!
+    let rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз"].randomElement()!
+    let card = PlayingCard(suit: suit, rank: rank)
+    cards.append(card)
+}
+
+print("Ваши карты:")
+for card in cards {
+    print("\(card.rank) \(card.suit)")
+}
+
+let suits = Set(cards.map { $0.suit })
+let ranks = Set(cards.map { $0.rank })
+
+if suits.count == 1 {
+    pokerHands.append("Флеш")
+}
+
+if ranks.count == 5 {
+    pokerHands.append("Стрит")
+}
+
+if pokerHands.isEmpty {
+    print("У вас нет комбинации")
+} else {
+    print("У вас \(pokerHands.joined(separator: " "))")
+}
+
+struct RandomNumberGenerator {
+    func nextInt(upperBound: Int) -> Int {
+        return Int.random(in: 0..<upperBound)
+    }
+}
